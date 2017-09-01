@@ -1,6 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
   var Genre = sequelize.define("Genre", {
-    title: DataTypes.STRING
+    title: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      len: [2,100]
+    }
   });
 
   Genre.associate = function(models) {
@@ -9,7 +13,13 @@ module.exports = function(sequelize, DataTypes) {
     Genre.hasMany(models.Website, {
       onDelete: "cascade"
     });
-  };
+    Genre.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+
+};
 
   return Genre;
 };

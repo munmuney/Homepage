@@ -2,9 +2,8 @@
 
 <!DOCTYPE html>
 <html>
-  
 <head>
-  <title>H▼MEP▲GE</title>
+  <title>W3.CSS Template</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -50,7 +49,7 @@
   }
 
   .wrapper {
-      padding:15%;
+      padding:12%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap:1em;
@@ -63,12 +62,14 @@
       border-radius: 3px;
   }
 
-  .nested {
+  .one{
+      margin:10px;
       /*display:grid;
       grid-template-rows: repeat(3, 1fr);
       grid-gap:0.2em;
       grid-auto-rows: minmax(10px,30px);*/
-      background-color:#b07d84;
+      /*background-color:#b07d84;*/
+
   }
 
   .nested > div{
@@ -83,7 +84,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-gap:1em;
-      grid-auto-rows: minmax(130px,auto)
+      grid-auto-rows: minmax(130px,150px)
     }
   }
 
@@ -97,41 +98,41 @@
         <!-- <div class="w3-display-middle"> -->
         <div class="wrapper">
           <div class="tul">
-            <div>twitter</div>
-            <div>facebook</div>
-            <div>facebook</div>
+            <div class= "one"><img src="img/amazon.jpg" alt="Amazon"></div>
+            <div class= "one"><img src="img/bankofamerica.jpg" alt="Bankofamerica"></div>
+            <div class= "one"><img src="img/chase.jpg" alt="Chase"></div>
          </div>
           <div class="tul">
-            <div>twitter</div>
-            <div>facebook</div>
-            <div>facebook</div>
+            <div class= "one"><img src="img/cnn.jpg" alt="CNN"></div>
+            <div class= "one"><img src="img/ebay.jpg" alt="Ebay"></div>
+            <div class= "one"><img src="img/etsy.jpg" alt="Etsy"></div>
           </div>
           <div class="tul nested ">
-             <div>twitter</div>
-             <div>facebook</div>
-             <div>facebook</div>
+             <div class= "one"><img src="img/facebook.jpg" alt="Facebook"></div>
+             <div class= "one"><img src="img/googlenews.jpg" alt="googlenews"></div>
+             <div class= "one"><img src="img/hulu.jpg" alt="Hulu"></div>
 
           </div>
           <div class="tul ">
-            <div>twitter</div>
-            <div>facebook</div>
-            <div>facebook</div>
+            <div class= "one"><img src="img/msn.jpg" alt="MSN"></div>
+            <div class= "one"><img src="img/netflix.jpg" alt="Netflix"></div>
+            <div class= "one"><img src="img/paypal.jpg" alt="PayPal"></div>
           </div>
           <div class="tul">
-            <div>twitter</div>
-            <div>facebook</div>
-            <div>facebook</div>
+            <div class= "one"><img src="img/tumblr.jpg" alt="Tumblr."></div>
+            <div class= "one"><img src="img/twitter.jpg" alt="Twitter"></div>
+            <div class= "one"><img src="img/yahoomail.jpg" alt="Yahoo!Mail"></div>
           </div>
           <div class="tul">
-            <div>twitter</div>
-            <div>facebook</div>
-            <div>facebook</div>
+            <div class= "one"><img src="img/yahoonews.jpg" alt="Yahoo!NEWS"></div>
+            <div class= "one"><img src="img/youtube.jpg" alt="YouTube"></div>
+            <div class= "one"><img src="img/cnn.jpg" alt="cnn"></div>
           </div>
       </div>
   </div>
-        <div class="w3-display-bottomright w3-padding-large">
+        <!-- <div class="w3-display-bottomright w3-padding-large">
             Powered by UCLA Coding Bootcamp
-        </div>
+        </div> -->
   <script>
 
       $(document).ready(function() {

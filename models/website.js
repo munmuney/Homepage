@@ -12,8 +12,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         isUrl: true,
+        notEmpty: true
       }
-    }
+    }   
   });
 
   Website.associate = function(models) {

@@ -1,48 +1,144 @@
+
+
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<style>
-body,
-h1 {
-    font-family: "Raleway", sans-serif
-}
+<head>
+  <title>W3.CSS Template</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link type="text/css"
+    href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-body,
-html {
-    height: 100%
-}
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-.bgimg {
-    background-image: url('https://i.pinimg.com/originals/be/7f/74/be7f741ff543c59fa94d3ec34c86009b.jpg');
-    min-height: 100%;
-    background-position: center;
-    background-size: cover;
-}
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-#span1 {
-    font-size: 0.9em;
-}
+  <style>
+  body,
+  h1 {
+      font-family: "Raleway", sans-serif
+  }
 
-#span2 {
-    letter-spacing: -0.1em;
-}
+  body,
+  html {
+      height: 100%
+  }
 
-</style>
+  .bgimg {
+      background-image: url('http://i.imgur.com/8EiQooA.jpg');
+      min-height: 100%;
+      background-position: center;
+      background-size: cover;
+  }
 
+  #span1 {
+      font-size: 0.9em;
+  }
+
+  #span2 {
+      letter-spacing: -0.1em;
+  }
+
+  .wrapper {
+      padding:15%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap:1em;
+      grid-auto-rows: minmax(200px,auto)
+  }
+
+  .wrapper > div{
+      background-color:#8e9fb1;
+      padding:1em;
+      border-radius: 3px;
+  }
+
+  .nested {
+      /*display:grid;
+      grid-template-rows: repeat(3, 1fr);
+      grid-gap:0.2em;
+      grid-auto-rows: minmax(10px,30px);*/
+      background-color:#b07d84;
+  }
+
+  .nested > div{
+      grid-auto-rows: minmax(10px,20px)
+      padding:1em;
+  }
+
+  @media only screen and (max-width:1024px){
+
+    .wrapper {
+      margin-top: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap:1em;
+      grid-auto-rows: minmax(130px,auto)
+    }
+  }
+
+  </style>
+</head>
 <body>
     <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
         <div class="w3-display-topleft w3-padding-large w3-xlarge">
             H<span>▼</span>ME<span id=span2>P</span><span id=span2>▲</span>GE
         </div>
-        <div class="w3-display-middle">
-        </div>
-        <div class="w3-display-bottomleft w3-padding-large">
+        <!-- <div class="w3-display-middle"> -->
+        <div class="wrapper">
+          <div class="tul">
+            <div>twitter</div>
+            <div>facebook</div>
+            <div>facebook</div>
+         </div>
+          <div class="tul">
+            <div>twitter</div>
+            <div>facebook</div>
+            <div>facebook</div>
+          </div>
+          <div class="tul nested ">
+             <div>twitter</div>
+             <div>facebook</div>
+             <div>facebook</div>
+
+          </div>
+          <div class="tul ">
+            <div>twitter</div>
+            <div>facebook</div>
+            <div>facebook</div>
+          </div>
+          <div class="tul">
+            <div>twitter</div>
+            <div>facebook</div>
+            <div>facebook</div>
+          </div>
+          <div class="tul">
+            <div>twitter</div>
+            <div>facebook</div>
+            <div>facebook</div>
+          </div>
+      </div>
+  </div>
+        <div class="w3-display-bottomright w3-padding-large">
             Powered by UCLA Coding Bootcamp
         </div>
+  <script>
+
+      $(document).ready(function() {
+      $(".wrapper").sortable();
+      $(".tul").sortable({ connectWith: ".tul" });
+      	});
+
+  </script>
 </body>
 
 </html>

@@ -1,10 +1,22 @@
 module.exports = function(sequelize, DataTypes) {
   var Genre = sequelize.define("Genre", {
-    title: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      len: [2,100]
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [2,100]
+      }
+    },
+    boxnum: {
+      type: DataTypes.INTEGER,
+      // allowNull: false,
+      // validate: {
+      //   len: [1]
+      // }
     }
+  },
+  {
+    timestamps: false
   });
 
   Genre.associate = function(models) {

@@ -21,7 +21,11 @@ module.exports = function(sequelize, DataTypes) {
 			type: DataTypes.STRING,
 			allowNull: false
 		}
-	}, {
+	},
+	{
+		timestamps: false
+	},
+	{
 		hooks: {
 			beforeValidate: function(user, options) {
 				user.username = user.username.toLowerCase();
@@ -41,6 +45,15 @@ module.exports = function(sequelize, DataTypes) {
 			}
 		}
 	});
+
+	User.associate = function(models) {
+    // Associating Genre with Websites
+    // When an Genre is deleted, also delete any associated Websites
+    User.hasMany(models.Genre, {
+      onDelete: "cascade"
+    });
+
+  };
 
 	return User;
 };

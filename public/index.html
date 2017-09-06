@@ -24,6 +24,12 @@
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
+  <!-- Bootstrap4 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+
+
   <style>
   body,
   h1 {
@@ -58,11 +64,11 @@
   }
   .wrapper {
       padding:10% 12% 4% 12%;
-
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+
       grid-gap:1em;
-      grid-auto-rows: minmax(150px,210px);
+      grid-auto-rows: minmax(150px,220px);
       overflow:hidden;
   }
 
@@ -72,16 +78,21 @@
        overflow: auto;
        width: 100%;
        height: 99%;
+
   }
 
   .one{
-      margin:13px;
+      margin:6px;
       display:grid;
+      text-align:center;
+  }
+  .fa-envelope {
+ 	 color: red;
+ 	 text-align:right;
+
   }
 
-
-
-  @media only screen and (max-width:1024px){
+  @media only screen and (max-width:992px){
     .wrapper {
       padding:12%;
       display: grid;
@@ -91,7 +102,7 @@
     }
 }
 
-    @media only screen and (max-width:824px){
+    @media only screen and (max-width:768px){
       .wrapper {
         padding:12%;
         display: grid;
@@ -101,7 +112,7 @@
       }
   }
 
-  @media only screen and (max-width:640px){
+  @media only screen and (max-width:576px){
     .wrapper {
       margin-top: auto;
       display: grid;
@@ -120,18 +131,26 @@
         </div>
 
         <div class="wrapper">
-          <div class="container1"><div class="tul">
-            <div class= "one"><a href="https://www.bankofamerica.com/"><img src="img/bankofamerica copy.jpg" alt="Bankofamerica"></a></div>
-            <div class= "one"><a href="https://www.chase.com/"><img src="img/chase copy.jpg" alt="Chase"></a></div>
-            <div class= "one"><a href="https://www.paypal.com/"><img src="img/paypal copy.jpg" alt="PayPal"></a></div>
+            <!-- <div class= "one">Finance<img src="img/genre_icons/finance.jpg" alt="finance"></div> -->
+          <div class="container1">
+                <div class="tul">
+            <!-- <div class="card bg-primary tul">
+                <div class="card-header row">
+                  <div class="col">finance</div>
+                  <div class="col"><img src="img/genre_icons/finance.jpg" class="imgcard" alt="Bankofamerica"></div>
+                </div> -->
+                <div class= "one"><a href="https://www.bankofamerica.com/"><img src="img/bankofamerica copy.jpg" alt="Bankofamerica"></a></div>
+                <div class= "one"><a href="https://www.chase.com/"><img src="img/chase copy.jpg" alt="Chase"></a></div>
+                <div class= "one"><a href="https://www.paypal.com/"><img src="img/paypal copy.jpg" alt="PayPal"></a></div>
+
+            </div>
           </div>
-        </div>
           <div class="tul">
             <div class= "one"><a href="https://www.amazon.com/"><img src="img/amazon copy.jpg" alt="Amazon"></a></div>
             <div class= "one"><a href="https://www.ebay.com/"><img src="img/ebay copy.jpg" alt="Ebay"></a></div>
             <div class= "one"><a href="https://www.etsy.com/"><img src="img/etsy copy.jpg" alt="Etsy"></a></div>
           </div>
-          <div class="tul nested ">
+          <div class="tul">
              <div class= "one"><a href="https://news.google.com"><img src="img/googlenews copy.jpg" alt="googlenews"></a></div>
              <div class= "one"><a href="https://www.cnn.com/"><img src="img/cnn copy.jpg" alt="CNN"></a></div>
              <div class= "one"><a href="https://www.yahoo.com/news/"><img src="img/yahoonews copy.jpg" alt="Yahoo!NEWS"></a></div>
@@ -148,7 +167,7 @@
           </div>
           <div class="tul">
             <div class= "one"><a href="https://mail.yahoo.com/"><img src="img/yahoomail copy.jpg" alt="Yahoo!Mail"></a></div>
-            <div class= "one"><a href="https://mail.google.com"><img src="img/cnn copy.jpg" alt="gmail"></a></div>
+            <div class= "one"><a href="https://mail.google.com"><img src="img/gmail copy.jpeg" alt="gmail"></a></div>
             <div class= "one"><a href="https://www.msn.com/en-us"><img src="img/msn copy.jpg" alt="MSN"></a></div>
           </div>
       </div>

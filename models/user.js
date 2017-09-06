@@ -1,46 +1,46 @@
-"use strict";
-
-var bcrypt = require("bcrypt-nodejs");
 
 module.exports = function(sequelize, DataTypes) {
-	var User = sequelize.define("User", {
-		id: {
+
+	var User = sequelize.define('user', {
+		id: { 
 			type: DataTypes.INTEGER,
-			primaryKey: true,
-			autoIncrement: true
+			autoIncrement: true, 
+			primaryKey: true
+		},
+		firstname: { 
+			type: DataTypes.STRING,
+			notEmpty: true
+		},
+		lastname: { 
+			type: DataTypes.STRING,
+			notEmpty: true
 		},
 		username: {
-			type: DataTypes.STRING,
-			allowNull: false,
+			type:DataTypes.STRING,
+			notEmpty: true
+		},
+		email: { 
+			type:DataTypes.STRING, 
 			validate: {
-				len: [0, 100],
-				isLowercase: true
-			}
+				isEmail:true
+			} 
 		},
-		password: {
+		password : {
 			type: DataTypes.STRING,
-			allowNull: false
-		}
-	}, {
-		hooks: {
-			beforeValidate: function(user, options) {
-				user.username = user.username.toLowerCase();
-			}
-		},
-		classMethods: {
-			generateHash: function(password) {
-				return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-			},
-			associate: function(models) {
-				User.hasMany(models.Genre);
-			}
-		},
-		instanceMethods: {			
-			validPassword: function(password) {
-				return bcrypt.compareSync(password, this.password);
-			}
-		}
+			allowNull: false 
+		}, 
+        status: {
+        	type: DataTypes.ENUM('active','inactive'),defaultValue:'active' 
+        }
+
 	});
 
+	// User.associate = function(models) {
+	// 	User.hasMany(models.Genre, {
+	// 		onDelete: "cascade"     
+	// 	});
+	// };
+
 	return User;
-};
+
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>H▼MEP▲GE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+  <!-- Bootstrap4 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+
+
+  <style>
+    body,
+    h1 {
+      font-family: "Raleway", sans-serif;
+      color: white;
+    }
+
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+
+.navbar{
+    background-color: rgba(52, 72, 84, 0.5);
+    /*opacity:0.80;*/
+}
+
+.btn{
+  background-color:rgba(48, 64, 74,1);
+  color:white;
+
+}
+
+    #span1 {
+      font-size: 0.9em;
+    }
+
+    #span2 {
+      letter-spacing: -0.1em;
+    }
+
+    #gradient {
+      overflow: hidden;
+    }
+
+
+
+    img {
+      display: grid;
+      border-radius: 7px;
+      margin: auto;
+    }
+    .wrapper {
+      padding: 4% 12% 4% 12%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1em;
+      grid-auto-rows: minmax(150px, 240px);
+      overflow: hidden;
+    }
+
+    .tul {
+      background-color: rgba(236, 240, 241, 0.28);
+      border-radius: 0px 0px 12px 12px;
+      overflow: auto;
+      width: 100%;
+      height: 100%;
+      border-radius: 0 0 12px 12px;
+    }
+
+
+    .one {
+      margin: 6px;
+      display: grid;
+      text-align: center;
+    }
+
+    .card {
+      background-color: rgba(236, 240, 241, 0.28);
+      border-radius: 12px;
+      border-width: 0px;
+    }
+
+    .genre {
+      margin: 10px;
+      font-size:20px;
+      text-align:center;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 0px;
+      width: 100%;
+      height: 30px;
+
+    }
+    .note{
+      margin-bottom: 5px;
+      margin-right: 10px;
+      text-align:right;
+    }
+
+    @media only screen and (max-width:1024px) {
+      .wrapper {
+        padding: 12%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 5em;
+        grid-auto-rows: minmax(150px, 200px)
+      }
+    }
+
+    @media only screen and (max-width:824px) {
+      .wrapper {
+        padding: 12%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 3em;
+        grid-auto-rows: minmax(150px, 200px)
+      }
+    }
+
+    @media only screen and (max-width:640px) {
+      .wrapper {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 2em;
+        grid-auto-rows: minmax(150px, 200px)
+      }
+    }
+
+
+  </style>
+</head>
+<!-- navbar-dark bg-dark -->
+<body id="gradient">
+  <nav class="navbar navbar-expand-sm  mb-3">
+        <div class="container">
+          <a class="navbar-brand">H<span>▼</span>ME<span id=span2>P</span><span id=span2>▲</span>GE</a>
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><button type="button" class="btn btn-sm">Add Website</button></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal">Add Genre</button>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="/logout"><button type="button" class="btn btn-sm">Log out</button></a>
+                  </li class="nav-item">
+
+              </ul>
+          </div>
+    </nav>
+<!-- <i class="fa fa-plus-circle" aria-hidden="true"></i> -->
+
+  <div class="wrapper">
+    <div class="card">
+      <div class="genre">Finance <i class="fa fa-plus-circle" aria-hidden="true"></i> </div>
+      <div class="tul">
+        <div class="one"><a href="https://www.bankofamerica.com/"><img src="img/bankofamerica copy.jpg" alt="Bankofamerica"></a></div>
+        <div class="one"><a href="https://www.chase.com/"><img src="img/chase copy.jpg" alt="Chase"></a></div>
+        <div class="one"><a href="https://www.paypal.com/"><img src="img/paypal copy.jpg" alt="PayPal"></a></div>
+
+      </div>
+    </div>
+    <div class="card">
+      <div class="genre">Ecommerce</div>
+      <div class="tul">
+        <div class="one"><a href="https://www.amazon.com/"><img src="img/amazon copy.jpg" alt="Amazon"></a></div>
+        <div class="one"><a href="https://www.ebay.com/"><img src="img/ebay copy.jpg" alt="Ebay"></a></div>
+        <div class="one"><a href="https://www.etsy.com/"><img src="img/etsy copy.jpg" alt="Etsy"></a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="genre">News</div>
+      <div class="tul">
+        <div class="one"><a href="https://news.google.com"><img src="img/googlenews copy.jpg" alt="googlenews"></a></div>
+        <div class="one"><a href="https://www.cnn.com/"><img src="img/cnn copy.jpg" alt="CNN"></a></div>
+        <div class="one"><a href="https://www.yahoo.com/news/"><img src="img/yahoonews copy.jpg" alt="Yahoo!NEWS"></a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="genre">Video</div>
+      <div class="tul ">
+        <div class="one"><a href="https://www.hulu.com/"><img src="img/hulu copy.jpg" alt="Hulu"></a></div>
+        <div class="one"><a href="https://www.netflix.com/"><img src="img/netflix copy.jpg" alt="Netflix"></a></div>
+        <div class="one"><a href="https://www.youtube.com/"><img src="img/youtube copy.jpg" alt="YouTube"></a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="genre">Social Media</div>
+      <div class="tul">
+        <div class="one"><a href="https://www.facebook.com/"><img src="img/facebook copy.jpg" alt="Facebook"></a></div>
+        <div class="one"><a href="https://www.twitter.com/"><img src="img/twitter copy.jpg" alt="Twitter"></a></div>
+        <div class="one"><a href="https://www.tumblr.com/"><img src="img/tumblr copy.jpg" alt="Tumblr."></a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="genre">Email</div>
+      <div class="tul">
+        <div class="one"><a href="https://mail.yahoo.com/"><img src="img/yahoomail copy.jpg" alt="Yahoo!Mail"></a></div>
+        <div class="one"><a href="https://mail.google.com"><img src="img/gmail copy.jpeg" alt="gmail"></a></div>
+        <div class="one"><a href="https://www.msn.com/en-us"><img src="img/msn copy.jpg" alt="MSN"></a></div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="note">
+
+      Powered by UCLA Coding Bootcamp
+    </div>
+  </footer>
+  <script>
+    $(document).ready(function() {
+      $(".wrapper").sortable();
+      $(".tul").sortable({
+        connectWith: ".tul"
+      });
+    });
+  </script>
+
+  <script src="js/gradient.js"></script>
+
+</body>
+
+</html>

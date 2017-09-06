@@ -3,17 +3,19 @@ var app            = express();
 var passport       = require('passport');
 var session        = require('express-session');
 var bodyParser     = require('body-parser');
-//var cp             = require('cookie-parser');
+var cp             = require('cookie-parser');
 var env            = require('dotenv').load();
-//var methodOverride = require("method-override");
+var methodOverride = require("method-override");
 
 var exphbs 		   = require('express-handlebars');
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // ----- BodyParser ----- //
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
  // ----- Passport ----- //
@@ -40,20 +42,22 @@ app.set('view engine', '.hbs');
 
 
 
-
 // ----- Models ----- //
 var models = require("./models");
 
 
 // ---- Routes ----- //
 require('./routes/auth.js')(app, passport);
+// require("./routes/html-routes.js")(app);
+require("./routes/genre-routes.js")(app);
+// require("./routes/website-routes.js")(app);
 
 // ----- load passport strategies ----- //
 require('./config/passport/passport.js')(passport, models.user);
 
 
 // ----- Sync Database ----- //
-models.sequelize.sync().then(function() {
+models.sequelize.sync({force: true}).then(function() {
     app.listen(PORT, function(err) {
         if (!err) console.log("Port Number is: " + PORT); 
         else console.log(err);

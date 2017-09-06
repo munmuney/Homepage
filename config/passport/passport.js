@@ -1,6 +1,9 @@
 // ---------- load bcrypt ---------- //
 var bcrypt = require('bcrypt-nodejs');
 
+var db = require("../../models");
+
+
 module.exports = function(passport, user) {
 
     var User = user;
@@ -28,11 +31,11 @@ module.exports = function(passport, user) {
     // ---------- Local SignUp ---------- //
     passport.use('local-signup', new LocalStrategy(
         {
-            usernameField: 'email',
+            usernameField: 'username',
             passwordField: 'password',
             passReqToCallback: true // allows us to pass back the entire request to the callback
         },
-        function(req, email, password, done) {
+        function(req, username, password, done) {
 
             // ----- function to create hash for user's password ----- //
             var generateHash = function(password) {
@@ -57,7 +60,7 @@ module.exports = function(passport, user) {
 
                     // ----- stores user's input ----- //
                     var data = {
-                        email: email,
+                        email: req.body.email,
                         password: generateHash(password),
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
@@ -66,12 +69,40 @@ module.exports = function(passport, user) {
 
                     // ----- creates new user homepage ----- //
                     User.create(data).then(function(newUser) {
+
+                         // console.log(newUser);
+                           db.Genre.bulkCreate([
+                            {name: 'Social Media', boxNum: '1', iconname: 'socialmedia.jpg', userId: newUser.dataValues.id}, 
+                            {name: 'News', boxNum: '2', iconname: 'news.jpg', userId: newUser.dataValues.id},
+                            { name: 'Email', boxNum: '3', iconname: 'email.jpg', userId: newUser.dataValues.id}, 
+                            {name: 'Ecommerce', boxNum: '4', iconname: 'ecommerce.jpg', userId: newUser.dataValues.id},
+                            { name: 'Finance', boxNum: '5', iconname: 'finance.jpg', userId: newUser.dataValues.id}, 
+                            {name: 'Video', boxNum: '6', iconname: 'video.jpg', userId: newUser.dataValues.id}], {hooks: true})
+                           .then(function(data){
+                              console.log(data);
+                           });
+
+          
+                           // db.Website.bulkCreate([
+                            // { name: 'facebook', url: 'https://facebook.com', png: "facebook copy.jpg", genreId: }, 
+                           //  // {name: 'News', boxNum: '2', iconname: 'news.jpg', userId: newUser.dataValues.id},
+                           //  // { name: 'Email', boxNum: '3', iconname: 'email.jpg', userId: newUser.dataValues.id}, 
+                           //  // {name: 'Ecommerce', boxNum: '4', iconname: 'ecommerce.jpg', userId: newUser.dataValues.id},
+                           //  // { name: 'Finance', boxNum: '5', iconname: 'finance.jpg', userId: newUser.dataValues.id}, 
+                           //  // {name: 'Video', boxNum: '6', iconname: 'video.jpg', userId: newUser.dataValues.id}])
+                           // .then(function(data){
+                           //    // console.log(data);
+                           // });
+
+
+
+
                         if (!newUser) {
-                            return done(null, false);
+                            done(null, false);
                         }
 
                         if (newUser) {
-                            return done(null, newUser);
+                            done(null, newUser);
                         }
 
                     // ----- catch error for creating new user ----- //

@@ -1,10 +1,29 @@
 module.exports = function(sequelize, DataTypes) {
   var Genre = sequelize.define("Genre", {
-    title: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      len: [2,100]
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [2,100]
+      }
+    },
+    boxNum: {
+      type: DataTypes.INTEGER,
+      // allowNull: false,
+      // validate: {
+      //   len: [1]
+      // }
+    },
+    iconname: {
+      type: DataTypes.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     len: [2,100]
+    //   }
     }
+  },
+  {
+    timestamps: false
   });
 
   Genre.associate = function(models) {
@@ -13,11 +32,11 @@ module.exports = function(sequelize, DataTypes) {
     Genre.hasMany(models.Website, {
       onDelete: "cascade"
     });
-    Genre.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
+    // Genre.belongsTo(models.User, {
+    //   foreignKey: {
+    //     allowNull: false
+    //   }
+    // });
 
 };
 

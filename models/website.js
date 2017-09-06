@@ -8,13 +8,24 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     url: {
-      type: DataTypes.TEXT("medium"),
-      allowNull: false,
-      validate: {
-        isUrl: true,
-        notEmpty: true
-      }
+      // type: DataTypes.TEXT("medium"),
+      type: DataTypes.STRING,
+      // allowNull: false,
+      // validate: {
+      //   isUrl: true,
+      //   notEmpty: true
+      // }
+    },
+    png: {
+      type: DataTypes.STRING,
+      // allowNull: false,
+      // validate: {
+      //   len: [1]
+      // }
     }   
+  },
+  {
+    timestamps: false
   });
 
   Website.associate = function(models) {
@@ -29,3 +40,4 @@ module.exports = function(sequelize, DataTypes) {
 
   return Website;
 };
+

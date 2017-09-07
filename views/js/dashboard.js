@@ -19,6 +19,10 @@ $(document).ready(function() {
         //make wrapper var
         var wrapper = $(".wrapper");
 
+        //this user's id
+        var GenreUserId = $("#hiddenclass").html();
+        var thisGenreUserId = parseInt(GenreUserId);
+
         //data array of genres
         var dataArr;
   
@@ -30,8 +34,12 @@ $(document).ready(function() {
 
         //define getGenres AND their Websites function
         function getGenres() {
+          
+          console.log("*******************************************");
+          console.log(thisGenreUserId);
+          console.log("*******************************************");
 
-          $.get("/genres", function(data) {
+          $.get("/genres/" + thisGenreUserId, function(data) {
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             console.log(data);
             dataArr = data;
@@ -160,13 +168,15 @@ $(document).ready(function() {
           if (addedGenre === "social media" || addedGenre === "Social Media") {
               addGenre({
               name: addedGenre,
-              iconname: "socialmedia.gif"
+              iconname: "socialmedia.gif",
+              userId: thisGenreUserId
             });
           }
           else {
               addGenre({
               name: addedGenre,
-              iconname: iconName
+              iconname: iconName,
+              userId: thisGenreUserId
             });
           }
 

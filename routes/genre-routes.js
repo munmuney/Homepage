@@ -4,14 +4,14 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/genres", function(req, res) {
+  app.get("/genres/:id", function(req, res) {
     // Here we add an "include" property to our options in our findAll query
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
     db.Genre.findAll({
-      // where: {
-      //   id: req.params.id
-      // },
+      where: {
+        userId: req.params.id
+      },
       include: [db.Website]
     }).then(function(dbGenre) {
       res.json(dbGenre);

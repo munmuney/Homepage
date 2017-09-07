@@ -222,7 +222,7 @@ $(document).ready(function() {
           addWebsite({
             name: addWebW.val().trim(),
             url: addWebU.val().trim(),
-            png: "facebook copy.jpg",
+            png: "pcp.png",
             GenreId: webG
           });
 

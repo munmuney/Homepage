@@ -1,28 +1,10 @@
 
-
 $(document).ready(function() {
-
 
      //event listeners
      $(document).on("click", "#myModal1", handleWebsiteFormSubmit);   //(addWebW, addWebU, addWebG)
      $(document).on("click", "#myModal2", handleGenreFormSubmit); //(addGenreG)
-     // $(document).on("submit", "#genre-form", handleGenreFormSubmit);
-     // $(document).on("submit", "#1-site-form", handleWebsiteFormSubmit1);
-     // $(document).on("submit", "#2-site-form", handleWebsiteFormSubmit2);
-     // $(document).on("submit", "#3-site-form", handleWebsiteFormSubmit3);
-     // $(document).on("submit", "#4-site-form", handleWebsiteFormSubmit4);
-     // $(document).on("submit", "#5-site-form", handleWebsiteFormSubmit5);
-     // $(document).on("submit", "#6-site-form", handleWebsiteFormSubmit6);
-     // $(document).on("submit", "#7-site-form", handleWebsiteFormSubmit7);
-     // $(document).on("submit", "#8-site-form", handleWebsiteFormSubmit8);
-     // $(document).on("submit", "#9-site-form", handleWebsiteFormSubmit9);
-     // $(document).on("submit", "#10-site-form", handleWebsiteFormSubmit10);
-     // $(document).on("submit", "#11-site-form", handleWebsiteFormSubmit11);
-     // $(document).on("submit", "#12-site-form", handleWebsiteFormSubmit12);
-     // $(document).on("submit", "#13-site-form", handleWebsiteFormSubmit13);
-     // $(document).on("submit", "#14-site-form", handleWebsiteFormSubmit14);
-     // $(document).on("click", ".delete-genre", handleDeleteButtonPress);
-
+   
 
         //wrapper has sortable genres (from data)
         $(".wrapper").sortable();
@@ -49,7 +31,7 @@ $(document).ready(function() {
         //define getGenres AND their Websites function
         function getGenres() {
 
-          $.get("/genres/:id", function(data) {
+          $.get("/genres", function(data) {
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             console.log(data);
             dataArr = data;
@@ -81,18 +63,18 @@ $(document).ready(function() {
                   //add genrename to new genre div
                   titlediv.html(genreName);
                   //add title div to name div
-                  namediv.prepend(titlediv);
+                  namediv.append(titlediv);
 
                   //grab genre icon if exists
                   if (data[i].iconname){
                     var imgdiv = $("<div class='gTileIcon'>");
                      var genreIcon = data[i].iconname;
-                     var icon = $("<img>");
+                     var icon = $("<img width='40' height='40'>");
                      //give icon the necessary src to link it up to our images genre icons directory
                      icon.attr("src", "img/genre_icons/" + genreIcon);
                      imgdiv.append(icon);
                      //add image div to name div
-                     namediv.append(imgdiv);
+                     namediv.prepend(imgdiv);
                   }
                   else {
                      var imgdiv = $("<div class='gTileIcon'>");
@@ -102,7 +84,7 @@ $(document).ready(function() {
                      icon.attr("src", "img/genre_icons/misc.gif");
                      imgdiv.append(icon);
                      //add image div to name div
-                     namediv.append(imgdiv);
+                     namediv.prepend(imgdiv);
                   }
                   
 
@@ -210,21 +192,28 @@ $(document).ready(function() {
           if (!addWebW.val().trim() || !addWebU.val().trim() || !addWebG.val().trim()) {
             return;
           }
-
-          var webG;
           
 
-          // for (i=0; i < dataArr.length; i++) {
-            
-          // }
+          for (i=0; i < dataArr.length; i++) {
+            console.log(dataArr[i]);
+            if(dataArr[i].name.toLowerCase() === addWebG.val().trim().toLowerCase()) {
+              addWebsite({
+                name: addWebW.val().trim(),
+                url: addWebU.val().trim(),
+                png: "pcp.png",
+                GenreId: dataArr[i].id
+              });
+            }
+
+          }
 
           //pass it into the database with its name, url, and genre id
-          addWebsite({
-            name: addWebW.val().trim(),
-            url: addWebU.val().trim(),
-            png: "pcp.png",
-            GenreId: webG
-          });
+          // addWebsite({
+          //   name: addWebW.val().trim(),
+          //   url: addWebU.val().trim(),
+          //   png: "facebook copy.jpg",
+          //   GenreId: webG
+          // });
 
       } // handle form submit end
 
@@ -234,331 +223,6 @@ $(document).ready(function() {
                 .then(getGenres);
             } // addWebsite function end
 
-        //////////////////////////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////
-        // form submits for a new websites
-
-        //////1/////1/////1//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit1(event) {
-        //         event.preventDefault();
-        //         var nameInput = $("#1-site-name");
-        //         var urlInput = $("#1-site-url");
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite1({
-        //           name: nameInput.val().trim(),
-
-        //           url: urlInput.val().trim()
-
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite1(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////2/////2/////2//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit2(event) {
-        //         event.preventDefault();
-        //         var nameInput = $("#2-site-name");
-        //         var urlInput = $("#2-site-url");
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite2({
-        //           name: nameInput.val().trim(),
-
-        //           url: urlInput.val().trim()
-
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite2(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////3/////3/////3//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit3(event) {
-        //         event.preventDefault();
-        //         var nameInput = $("#3-site-name");
-        //         var urlInput = $("#3-site-url");
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite3({
-        //           name: nameInput.val().trim(),
-
-        //           url: urlInput.val().trim()
-
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite3(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////4/////4/////4//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit4(event) {
-        //         event.preventDefault();
-        //         var nameInput = $("#4-site-name");
-        //         var urlInput = $("#4-site-url");
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite4({
-        //           name: nameInput.val().trim(),
-
-        //           url: urlInput.val().trim()
-
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite4(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////5/////5/////5//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit5(event) {
-        //         event.preventDefault();
-        //         var nameInput = $("#5-site-name");
-        //         var urlInput = $("#5-site-url");
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite5({
-        //           name: nameInput.val().trim(),
-
-        //           url: urlInput.val().trim()
-
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite5(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////6/////6/////6//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit6(event) {
-        //         event.preventDefault();
-        //         var nameInput = $("#6-site-name");
-        //         var urlInput = $("#6-site-url");
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite6({
-        //           name: nameInput.val().trim(),
-
-        //           url: urlInput.val().trim()
-
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite6(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////7/////7/////7//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit7(event) {
-        //         event.preventDefault();
-        //         var nameInput = $("#7-site-name");
-        //         var urlInput = $("#7-site-url");
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite7({
-        //           name: nameInput.val().trim(),
-
-        //           url: urlInput.val().trim()
-
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite7(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////8/////8/////8//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit8(event) {
-        //         event.preventDefault();
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite8({
-        //           name: nameInput
-        //             .val()
-        //             .trim()
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite8(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////9/////9/////9//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit9(event) {
-        //         event.preventDefault();
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite9({
-        //           name: nameInput
-        //             .val()
-        //             .trim()
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite9(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////10/////10/////10//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit10(event) {
-        //         event.preventDefault();
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite10({
-        //           name: nameInput
-        //             .val()
-        //             .trim()
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite10(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////11/////11/////11//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit11(event) {
-        //         event.preventDefault();
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite11({
-        //           name: nameInput
-        //             .val()
-        //             .trim()
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite11(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////12/////12/////12//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit12(event) {
-        //         event.preventDefault();
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite12({
-        //           name: nameInput
-        //             .val()
-        //             .trim()
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite12(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////13/////13/////13//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit13(event) {
-        //         event.preventDefault();
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite13({
-        //           name: nameInput
-        //             .val()
-        //             .trim()
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite13(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-        // //////14/////14/////14//////////////////////////////////////////////////////
-        //       function handleWebsiteFormSubmit14(event) {
-        //         event.preventDefault();
-        //         // Don't do anything if the name fields hasn't been filled out
-        //         if (!nameInput.val().trim().trim()) {
-        //           return;
-        //         }
-        //         addWebsite14({
-        //           name: nameInput
-        //             .val()
-        //             .trim()
-        //         });
-
-        //     } // handle form submit end
-
-        //       function addWebsite14(genreData) {
-        //         $.post("/genres", genreData)
-        //           .then(getGenres);
-        //       } // addWebsite function end
-
-
-
-       // function handleDeleteButtonPress() {
-       //      var listItemData = $(this).parent("td").parent("tr").data("author");
-       //      var id = listItemData.id;
-       //      $.ajax({
-       //        method: "DELETE",
-       //        url: "/api/authors/" + id
-       //      })
-       //      .done(getGenres);
-       //    }
-        
              
 
 });
-
-
-

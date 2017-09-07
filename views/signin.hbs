@@ -3,30 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <title>H▼MEP▲GE</title>
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
-  
       <style>
       /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
       @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
 
+      /*footer*/
+.footer {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 30px;
+      height: 30px;
+
+      overflow: hidden;
+        }
+
+.note{
+
+      color:white;
+      margin-left: 800px;
+      width: 100%;
+      height: 100%;
+
+    }
+  #polish{
+      margin-top: 50px;
+      border-radius: 7px;
+    }
+a{
+  color:white;
+  font-size: 14px;
+}
+p{
+  font-size: 13px;
+}
 body {
   background: #999;
   padding: 40px;
   font-family: "Open Sans Condensed", sans-serif;
 }
 
-#bg {
+#gradient{
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background: url(http://lorempixel.com/800/500/nature) no-repeat center center fixed;
+  /*background: url(http://lorempixel.com/800/500/nature) no-repeat center center fixed;
   background-size: cover;
-  -webkit-filter: blur(5px);    
+  -webkit-filter: blur(5px);*/
 }
+
 
 form {
   position: relative;
@@ -77,11 +106,11 @@ form input.pass {
 form button[type=submit] {
   width: 248px;
   margin-bottom: 0;
-  color: #3f898a;
+  color: white;
   letter-spacing: .05em;
   text-shadow: 0 1px 0 #133d3e;
   text-transform: uppercase;
-  background: #225556;
+  background:rgba(52, 72, 84, 0.5);
   border-top-color: #9fb5b5;
   border-left-color: #608586;
   border-bottom-color: #1b4849;
@@ -95,38 +124,33 @@ form button[type=submit] {
 </head>
 
 <body>
-  <div id="bg"></div>
+  <div id="gradient"></div>
 
-<!-- <form action="">
-    
+<form action="" id="polish">
+
   <label for=""></label>
   <input type="text" name="" id="" placeholder="username" class="username">
 
   <label for=""></label>
   <input type="password" name="" id="" placeholder="password" class="pass">
-    
-  <button type="submit">login to your account</button>
-  <br>
-  <button type="submit">sign up for an account</button>
-
-</form> -->
-
-
-<form id="signin" name="signin" method="POST" action="/signin">
-
-  <input class="text" name="username" type="text" placeholder="username" class="username"/>
-
-  <input name="password" type="password" placeholder="Password" class="pass"/>
 
   <button type="submit">login to your account</button>
   <br>
-  <button type="submit"><a href="/signup" style="text-decoration:none; color:#3F898A">Signup</a></button>
-
+  <button type="submit"><a href="/signup" style="text-decoration:none">Signup</a></button>
 
 </form>
 
+<footer class="footer">
+  <div class="note">
+    <p>Developer:</P>
+    <p><a href="https://github.com/mmianchi">Mahshid Mianchi</a>&nbsp;, <a href="https://github.com/munmuney">Genevieve Kam</a>&nbsp;,
+    <a href="https://github.com/kyserrecchia">kyle Serrecchia</a>&nbsp;, <a href="https://github.com/LyleHorowitz">Lyle Horowits</a>&nbsp; </P>
+
+
+  </div>
+</footer>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-  
+  <script src="js/gradient.js"></script>
 </body>
 </html>

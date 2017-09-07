@@ -57,7 +57,7 @@ require('./config/passport/passport.js')(passport, models.user);
 
 
 // ----- Sync Database ----- //
-models.sequelize.sync({force: true}).then(function() {
+models.sequelize.sync().then(function() {
     app.listen(PORT, function(err) {
         if (!err) console.log("Port Number is: " + PORT); 
         else console.log(err);

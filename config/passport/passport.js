@@ -76,186 +76,148 @@ module.exports = function(passport, user) {
 
                          // console.log(newUser);
                            db.Genre.bulkCreate([
-                            {id: newUser.dataValues.id*100 + 1, name: 'Social Media', boxNum: '1', 
-                                iconname: 'socialmedia.gif', userId: newUser.dataValues.id}, 
+                            {name: 'Social Media', boxNum: '1', 
+                                iconname: 'socialmedia.png', userId: newUser.dataValues.id}, 
 
-                            {id: newUser.dataValues.id*100 + 2, name: 'News', boxNum: '2', 
-                                iconname: 'news.gif', userId: newUser.dataValues.id},
+                            {name: 'News', boxNum: '2', 
+                                iconname: 'news.png', userId: newUser.dataValues.id},
 
-                            {id: newUser.dataValues.id*100 + 3, name: 'Email', boxNum: '3', 
-                                iconname: 'email.gif', userId: newUser.dataValues.id}, 
+                            {name: 'Email', boxNum: '3', 
+                                iconname: 'email.png', userId: newUser.dataValues.id}, 
 
-                            {id: newUser.dataValues.id*100 + 4, name: 'Ecommerce', boxNum: '4', 
-                                iconname: 'ecommerce.gif', userId: newUser.dataValues.id},
+                            {name: 'Ecommerce', boxNum: '4', 
+                                iconname: 'ecommerce.png', userId: newUser.dataValues.id},
 
-                            {id: newUser.dataValues.id*100 + 5, name: 'Finance', boxNum: '5', 
-                                iconname: 'finance.gif', userId: newUser.dataValues.id}, 
+                            {name: 'Finance', boxNum: '5', 
+                                iconname: 'finance.png', userId: newUser.dataValues.id}, 
 
-                            {id: newUser.dataValues.id*100 + 6, name: 'Video', boxNum: '6', 
-                                iconname: 'video.gif', userId: newUser.dataValues.id}], 
-                            {hooks: true})
-                           .then(function(data){
-                              // var lastgenreid = data[data.length-1].dataValues.id;
-                              // for (var i = 0;  i < data.length; i++) {
+                            {name: 'Video', boxNum: '6', 
+                                iconname: 'video.png', userId: newUser.dataValues.id}], 
+                            {returning: true})
+                           .then(function(){
+                            db.Genre.findAll({
+                                Where: {
+                                    userId: newUser.dataValues.id
+                                }
+                            }).then(function(data){
+
+                                console.log("!!!!!!!!!!!!!!!!!!!!!!!");
+                                console.log(data);
+                                console.log("!!!!!!!!!!!!!!!!!!!!!!!");
+
+                                for (var i = 0;  i < data.length; i++) {
                               //       data[i].dataValues.id
 
-                              //       switch (data[i].dataValues.name) {
-                              //           case ("Social Media")
-                              //           break;
-                              //       }
+                                    console.log(data[i].dataValues.id);
 
+                                    switch (data[i].dataValues.name) {
+                                        case "Social Media":
+                                            db.Website.bulkCreate([
+                                            {name: 'facebook', url: 'https://facebook.com', 
+                                                png: "facebook copy.jpg", GenreId: data[i].dataValues.id},
 
-                              // }
+                                            {name: 'twitter', url: 'https://twitter.com', 
+                                                png: "twitter copy.jpg", GenreId: data[i].dataValues.id},
+
+                                            {name: 'tumblr', url: 'https://tumblr.com', 
+                                                png: "tumblr copy.jpg", GenreId: data[i].dataValues.id}])
+                                            .then(function(data){
+                                             // console.log(data);
+                                            });
+                                            break;
+                                        case "News":
+                                            genreid = data[i].dataValues.id;
+                                            db.Website.bulkCreate([
+                                            {name: 'cnn', url: 'https://cnn.com', 
+                                                png: "cnn copy.jpg", GenreId: genreid},
+
+                                            {name: 'chase', url: 'https://chase.com', 
+                                                png: "chase copy.jpg", GenreId: genreid},
+
+                                            {name: 'paypal', url: 'https://paypal.com', 
+                                                png: "paypal copy.jpg", GenreId: genreid}])
+                                            .then(function(data){
+                                             // console.log(data);
+                                            });
+                                            break;
+                                        case "Email":
+                                            genreid = data[i].dataValues.id;
+                                            db.Website.bulkCreate([
+                                            {name: 'googlenews', url: 'https://googlenews.com', 
+                                                png: "googlenews copy.jpg", GenreId: genreid},
+
+                                            {name: 'msn', url: 'https://msn.com', 
+                                                png: "msn copy.jpg", GenreId: genreid},
+
+                                            {name: 'hulu', url: 'https://hulu.com', 
+                                                png: "hulu copy.jpg", GenreId: genreid}])
+                                            .then(function(data){
+                                             // console.log(data);
+                                            });
+                                            break;
+                                        case "Ecommerce":
+                                            genreid = data[i].dataValues.id;
+                                            db.Website.bulkCreate([
+                                            {name: 'amazon', url: 'https://amazon.com', 
+                                                png: "amazon copy.jpg", GenreId: genreid},
+
+                                            {name: 'etsy', url: 'https://etsy.com', 
+                                                png: "etsy copy.jpg", GenreId: genreid},
+
+                                            {name: 'ebay', url: 'https://ebay.com', 
+                                                png: "ebay copy.jpg", GenreId: genreid}])
+                                            .then(function(data){
+                                             // console.log(data);
+                                            });
+                                            break;
+                                        case "Finance":
+                                            genreid = data[i].dataValues.id;
+                                            db.Website.bulkCreate([
+                                            {name: 'chase', url: 'https://chase.com', 
+                                                png: "chase copy.jpg", GenreId: genreid},
+
+                                            {name: 'bankofamerica', url: 'https://bankofamerica.com', 
+                                                png: "bankofamerica copy.jpg", GenreId: genreid},
+
+                                            {name: 'yahoonews', url: 'https://yahoonews.com', 
+                                                png: "yahoonews copy.jpg", GenreId: genreid}])
+                                            .then(function(data){
+                                             // console.log(data);
+                                            });
+                                            break;
+                                        case "Video":
+                                            genreid = data[i].dataValues.id;
+                                            db.Website.bulkCreate([
+                                            {name: 'netflix', url: 'https://netflix.com', 
+                                                png: "netflix copy.jpg", GenreId: genreid},
+
+                                            {name: 'youtube', url: 'https://youtube.com', 
+                                                png: "youtube copy.jpg", GenreId: genreid},
+
+                                            {name: 'tumblr', url: 'https://tumblr.com', 
+                                                png: "tumblr copy.jpg", GenreId: genreid}])
+                                            .then(function(data){
+                                             // console.log(data);
+                                            });
+                                            break;
+                                        default:
+                                            text = "The fuck did you do?";
+                                    }
+                                    
+
+                              }
+                            })
+                            // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                            // console.log(data);
+                            // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                            
                               // // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                               // // console.log(lastgenreid);
                               // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                               // console.log(data);
                               // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                              db.Website.bulkCreate([
-                            {name: 'facebook', url: 'https://facebook.com', 
-                                png: "facebook copy.jpg", GenreId: newUser.dataValues.id*100 + 1},
-
-                            {name: 'twitter', url: 'https://twitter.com', 
-                                png: "twitter copy.jpg", GenreId: newUser.dataValues.id*100 + 1},
-
-                            {name: 'tumblr', url: 'https://tumblr.com', 
-                                png: "tumblr copy.jpg", GenreId: newUser.dataValues.id*100 + 1},
-
-
-
-                            {name: 'cnn', url: 'https://cnn.com', 
-                                png: "cnn copy.jpg", GenreId: newUser.dataValues.id*100 + 2},
-
-                            {name: 'chase', url: 'https://chase.com', 
-                                png: "chase copy.jpg", GenreId: newUser.dataValues.id*100 + 2},
-
-                            {name: 'paypal', url: 'https://paypal.com', 
-                                png: "paypal copy.jpg", GenreId: newUser.dataValues.id*100 + 2},
-
-
-                            {name: 'googlenews', url: 'https://googlenews.com', 
-                                png: "googlenews copy.jpg", GenreId: newUser.dataValues.id*100 + 3},
-
-                            {name: 'msn', url: 'https://msn.com', 
-                                png: "msn copy.jpg", GenreId: newUser.dataValues.id*100 + 3},
-
-                            {name: 'hulu', url: 'https://hulu.com', 
-                                png: "hulu copy.jpg", GenreId: newUser.dataValues.id*100 + 3},
-
-
-                            {name: 'amazon', url: 'https://amazon.com', 
-                                png: "amazon copy.jpg", GenreId: newUser.dataValues.id*100 + 4},
-
-                            {name: 'etsy', url: 'https://etsy.com', 
-                                png: "etsy copy.jpg", GenreId: newUser.dataValues.id*100 + 4},
-
-                            {name: 'ebay', url: 'https://ebay.com', 
-                                png: "ebay copy.jpg", GenreId: newUser.dataValues.id*100 + 4},
-
-
-                            {name: 'chase', url: 'https://chase.com', 
-                                png: "chase copy.jpg", GenreId: newUser.dataValues.id*100 + 5},
-
-                            {name: 'bankofamerica', url: 'https://bankofamerica.com', 
-                                png: "bankofamerica copy.jpg", GenreId: newUser.dataValues.id*100 + 5},
-
-                            {name: 'yahoonews', url: 'https://yahoonews.com', 
-                                png: "yahoonews copy.jpg", GenreId: newUser.dataValues.id*100 + 5},
-
-
-                            {name: 'netflix', url: 'https://netflix.com', 
-                                png: "netflix copy.jpg", GenreId: newUser.dataValues.id*100 + 6},
-
-                            {name: 'youtube', url: 'https://youtube.com', 
-                                png: "youtube copy.jpg", GenreId: newUser.dataValues.id*100 + 6},
-
-                            {name: 'tumblr', url: 'https://tumblr.com', 
-                                png: "tumblr copy.jpg", GenreId: newUser.dataValues.id*100 + 6}
-                            ]) 
-                            // {name: 'News', boxNum: '2', iconname: 'news.jpg', userId: newUser.dataValues.id},
-                            // { name: 'Email', boxNum: '3', iconname: 'email.jpg', userId: newUser.dataValues.id}, 
-                            // {name: 'Ecommerce', boxNum: '4', iconname: 'ecommerce.jpg', userId: newUser.dataValues.id},
-                            // { name: 'Finance', boxNum: '5', iconname: 'finance.jpg', userId: newUser.dataValues.id}, 
-                            // {name: 'Video', boxNum: '6', iconname: 'video.jpg', userId: newUser.dataValues.id}])
-                           .then(function(data){
-                              // console.log(data);
-                           });
 
                            });
-
-          
-                           // db.Website.bulkCreate([
-                           //  {name: 'facebook', url: 'https://facebook.com', 
-                           //      png: "facebook copy.jpg", GenreId: newUser.dataValues.id*100 + 1},
-
-                           //  {name: 'twitter', url: 'https://twitter.com', 
-                           //      png: "twitter copy.jpg", GenreId: newUser.dataValues.id*100 + 1},
-
-                           //  {name: 'tumblr', url: 'https://tumblr.com', 
-                           //      png: "tumblr copy.jpg", GenreId: newUser.dataValues.id*100 + 1},
-
-
-
-                           //  {name: 'cnn', url: 'https://cnn.com', 
-                           //      png: "cnn copy.jpg", GenreId: newUser.dataValues.id*100 + 2},
-
-                           //  {name: 'chase', url: 'https://chase.com', 
-                           //      png: "chase copy.jpg", GenreId: newUser.dataValues.id*100 + 2},
-
-                           //  {name: 'paypal', url: 'https://paypal.com', 
-                           //      png: "paypal copy.jpg", GenreId: newUser.dataValues.id*100 + 2},
-
-
-                           //  {name: 'googlenews', url: 'https://googlenews.com', 
-                           //      png: "googlenews copy.jpg", GenreId: newUser.dataValues.id*100 + 3},
-
-                           //  {name: 'msn', url: 'https://msn.com', 
-                           //      png: "msn copy.jpg", GenreId: newUser.dataValues.id*100 + 3},
-
-                           //  {name: 'hulu', url: 'https://hulu.com', 
-                           //      png: "hulu copy.jpg", GenreId: newUser.dataValues.id*100 + 3},
-
-
-                           //  {name: 'amazon', url: 'https://amazon.com', 
-                           //      png: "amazon copy.jpg", GenreId: newUser.dataValues.id*100 + 4},
-
-                           //  {name: 'etsy', url: 'https://etsy.com', 
-                           //      png: "etsy copy.jpg", GenreId: newUser.dataValues.id*100 + 4},
-
-                           //  {name: 'ebay', url: 'https://ebay.com', 
-                           //      png: "ebay copy.jpg", GenreId: newUser.dataValues.id*100 + 4},
-
-
-                           //  {name: 'chase', url: 'https://chase.com', 
-                           //      png: "chase copy.jpg", GenreId: newUser.dataValues.id*100 + 5},
-
-                           //  {name: 'bankofamerica', url: 'https://bankofamerica.com', 
-                           //      png: "bankofamerica copy.jpg", GenreId: newUser.dataValues.id*100 + 5},
-
-                           //  {name: 'yahoonews', url: 'https://yahoonews.com', 
-                           //      png: "yahoonews copy.jpg", GenreId: newUser.dataValues.id*100 + 5},
-
-
-                           //  {name: 'netflix', url: 'https://netflix.com', 
-                           //      png: "netflix copy.jpg", GenreId: newUser.dataValues.id*100 + 6},
-
-                           //  {name: 'youtube', url: 'https://youtube.com', 
-                           //      png: "youtube copy.jpg", GenreId: newUser.dataValues.id*100 + 6},
-
-                           //  {name: 'tumblr', url: 'https://tumblr.com', 
-                           //      png: "tumblr copy.jpg", GenreId: newUser.dataValues.id*100 + 6}
-                           //  ]) 
-                           //  // {name: 'News', boxNum: '2', iconname: 'news.jpg', userId: newUser.dataValues.id},
-                           //  // { name: 'Email', boxNum: '3', iconname: 'email.jpg', userId: newUser.dataValues.id}, 
-                           //  // {name: 'Ecommerce', boxNum: '4', iconname: 'ecommerce.jpg', userId: newUser.dataValues.id},
-                           //  // { name: 'Finance', boxNum: '5', iconname: 'finance.jpg', userId: newUser.dataValues.id}, 
-                           //  // {name: 'Video', boxNum: '6', iconname: 'video.jpg', userId: newUser.dataValues.id}])
-                           // .then(function(data){
-                           //    // console.log(data);
-                           // });
-
-
-
 
                         if (!newUser) {
                             done(null, false);

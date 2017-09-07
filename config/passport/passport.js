@@ -85,7 +85,7 @@ module.exports = function(passport, user) {
                             {name: 'Email', boxNum: '3', 
                                 iconname: 'email.png', userId: newUser.dataValues.id}, 
 
-                            {name: 'eCommerce', boxNum: '4', 
+                            {name: 'Ecommerce', boxNum: '4', 
                                 iconname: 'ecommerce.png', userId: newUser.dataValues.id},
 
                             {name: 'Finance', boxNum: '5', 

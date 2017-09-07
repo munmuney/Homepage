@@ -50,7 +50,7 @@ var models = require("./models");
 require('./routes/auth.js')(app, passport);
 // require("./routes/html-routes.js")(app);
 require("./routes/genre-routes.js")(app);
-// require("./routes/website-routes.js")(app);
+require("./routes/website-routes.js")(app);
 
 // ----- load passport strategies ----- //
 require('./config/passport/passport.js')(passport, models.user);

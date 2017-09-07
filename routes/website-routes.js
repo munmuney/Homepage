@@ -1,6 +1,5 @@
 //IN PROGRESS!!!
 
-
 var db = require("../models");
 
 module.exports = function(app) {
@@ -17,9 +16,11 @@ module.exports = function(app) {
   });
 
 
-  app.post("/Websites", function(req, res) {
+  app.post("/websites", function(req, res) {
     db.Website.create(req.body).then(function(dbWebsite) {
+      console.log(dbWebsite);
       res.json(dbWebsite);
     });
   });
+}
 

@@ -2,8 +2,11 @@
 
 $(document).ready(function() {
 
+
      //event listeners
-     $(document).on("submit", "#genre-form", handleGenreFormSubmit);
+     $(document).on("click", "#myModal1", handleWebsiteFormSubmit);   //(addWebW, addWebU, addWebG)
+     $(document).on("click", "#myModal2", handleGenreFormSubmit); //(addGenreG)
+     // $(document).on("submit", "#genre-form", handleGenreFormSubmit);
      // $(document).on("submit", "#1-site-form", handleWebsiteFormSubmit1);
      // $(document).on("submit", "#2-site-form", handleWebsiteFormSubmit2);
      // $(document).on("submit", "#3-site-form", handleWebsiteFormSubmit3);
@@ -26,9 +29,16 @@ $(document).ready(function() {
         $(".mysortable").sortable({ connectWith: ".mysortable" });
 
         //make var for genre name id from html
-        var nameInput = $("#genre-name");
+        var addGenreG = $("#addGenreG");
+        //make vars for website inputs from html
+        var addWebW = $("#addWebW");
+        var addWebU = $("#addWebU");
+        var addWebG = $("#addWebG");
         //make wrapper var
         var wrapper = $(".wrapper");
+
+        //data array of genres
+        var dataArr;
   
         //call genres and their sites
         getGenres();
@@ -39,31 +49,60 @@ $(document).ready(function() {
         //define getGenres AND their Websites function
         function getGenres() {
 
-          $.get("/genres", function(data) {
+          $.get("/genres/:id", function(data) {
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            console.log(data);
+            dataArr = data;
+            console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            //make sure vals for get genre and get websites are clear
+            addGenreG.val("");
             //empty if already full
             wrapper.empty();
             //loop through every member of the data array to get each genre
               for (i = 0; i <data.length; i++){
+                  //make main genre div w/class card
+                  var maindiv = $("<div class='card'>");
+                  //make genre NAME div 
+                  var namediv = $("<div class='genre'>");
+                  //make title div for inside name div
+                  var titlediv = $("<div class='gTitle'>");
                   //make new div for each genre
                   var newd = $("<div>");
                   //should make genre div sortable
                   newd.addClass("mysortable tul");
                   $(".mysortable").sortable({ connectWith: ".mysortable" });
-                  //add genre div to wrapper
-                  wrapper.append(newd);
+                  //main div appends namediv and then tul div
+                  maindiv.append(namediv);
+                  maindiv.append(newd);
+                  //add main genre div to wrapper
+                  wrapper.append(maindiv);
                   //grab genre name
                   var genreName = data[i].name;
                   //add genrename to new genre div
-                  newd.html(genreName);
+                  titlediv.html(genreName);
+                  //add title div to name div
+                  namediv.prepend(titlediv);
 
                   //grab genre icon if exists
                   if (data[i].iconname){
+                    var imgdiv = $("<div class='gTileIcon'>");
                      var genreIcon = data[i].iconname;
                      var icon = $("<img>");
                      //give icon the necessary src to link it up to our images genre icons directory
                      icon.attr("src", "img/genre_icons/" + genreIcon);
-                     //add icon to newd
-                     newd.prepend(icon);
+                     imgdiv.append(icon);
+                     //add image div to name div
+                     namediv.append(imgdiv);
+                  }
+                  else {
+                     var imgdiv = $("<div class='gTileIcon'>");
+                     var genreIcon = data[i].iconname;
+                     var icon = $("<img>");
+                     //give icon the necessary src to link it up to our images genre icons directory
+                     icon.attr("src", "img/genre_icons/misc.gif");
+                     imgdiv.append(icon);
+                     //add image div to name div
+                     namediv.append(imgdiv);
                   }
                   
 
@@ -107,7 +146,7 @@ $(document).ready(function() {
                      //                 '</form>' +
                      //              ' </div>'); 
                      // newd.append(webform);
-                  
+                  $(".mysortable").sortable({ connectWith: ".mysortable" });
                  } //genre for loop end
                  
             }); //get function end
@@ -116,18 +155,42 @@ $(document).ready(function() {
 
 
       /////////////////////////////////////////////////////
-      // form submit for a new genre
+      // FORM SUBMIT FOR NEW GENRE
       function handleGenreFormSubmit(event) {
           event.preventDefault();
           // Don't do anything if the name fields hasn't been filled out
-          if (!nameInput.val().trim().trim()) {
+          if (!addGenreG.val().trim()) {
             return;
           }
-          addGenre({
-            name: nameInput
-              .val()
-              .trim()
-          });
+
+          // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          // console.log(event);
+          // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+          addedGenre = addGenreG.val().trim();
+
+          // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+          // console.log(addedGenre);
+          // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+          var iconName = addGenreG.val().trim().toLowerCase() + ".gif";
+
+          if (addedGenre === "social media" || addedGenre === "Social Media") {
+              addGenre({
+              name: addedGenre,
+              iconname: "socialmedia.gif"
+            });
+          }
+          else {
+              addGenre({
+              name: addedGenre,
+              iconname: iconName
+            });
+          }
+
+          
+
+          
 
       } // handle form submit end
 
@@ -136,6 +199,40 @@ $(document).ready(function() {
               $.post("/genres", genreData)
                 .then(getGenres);
             } // addGenre function end
+
+
+      /////////////////////////////////////////////////////
+      // (addWebW, addWebU, addWebG)
+      // FORM SUBMIT FOR NEW WEBSITE
+      function handleWebsiteFormSubmit(event) {
+          event.preventDefault();
+          // Don't do anything if the name fields hasn't been filled out
+          if (!addWebW.val().trim() || !addWebU.val().trim() || !addWebG.val().trim()) {
+            return;
+          }
+
+          var webG;
+          
+
+          // for (i=0; i < dataArr.length; i++) {
+            
+          // }
+
+          //pass it into the database with its name, url, and genre id
+          addWebsite({
+            name: addWebW.val().trim(),
+            url: addWebU.val().trim(),
+            png: "facebook copy.jpg",
+            GenreId: webG
+          });
+
+      } // handle form submit end
+
+            // POST of new Website
+            function addWebsite(WebsiteData) {
+              $.post("/websites", WebsiteData)
+                .then(getGenres);
+            } // addWebsite function end
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -462,4 +559,6 @@ $(document).ready(function() {
              
 
 });
+
+
 

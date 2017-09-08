@@ -203,13 +203,24 @@ $(document).ready(function() {
             return;
           }
           
+          var webUrl;
+
+          if (addWebU.val().trim().includes("https://")) {
+            webUrl = addWebU.val().trim();
+            console.log("There is http. Continue." + webUrl);
+
+          }
+          else {
+            webUrl = "https://" + addWebU.val().trim();
+            console.log("There is no http. Add one." + webUrl);
+          }
 
           for (i=0; i < dataArr.length; i++) {
             console.log(dataArr[i]);
             if(dataArr[i].name.toLowerCase() === addWebG.val().trim().toLowerCase()) {
               addWebsite({
                 name: addWebW.val().trim(),
-                url: addWebU.val().trim(),
+                url: webUrl,
                 png: "pcp.png",
                 GenreId: dataArr[i].id
               });
